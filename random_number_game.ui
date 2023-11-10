@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>480</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Угадай число 0-100</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLineEdit" name="InputNumber">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>64</y>
+      <width>281</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">padding: 5px;</string>
+    </property>
+    <property name="placeholderText">
+     <string>Введите число 0-100</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="CheckResultButton">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>120</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Ubuntu</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(51, 209, 122);
+border-radius: 25px;
+color: rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>Проверить</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="OutputText">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>10</y>
+      <width>441</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(119, 118, 123);
+color: rgb(246, 245, 244);
+border-radius: 25px;</string>
+    </property>
+    <property name="text">
+     <string>Текст ту т</string>
+    </property>
+    <property name="margin">
+     <number>5</number>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
