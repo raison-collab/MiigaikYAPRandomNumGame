@@ -55,6 +55,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(51, 209, 122);
+border: none;
 border-radius: 25px;
 color: rgb(255, 255, 255);
 </string>
@@ -82,6 +83,24 @@ border-radius: 25px;</string>
     </property>
     <property name="margin">
      <number>5</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="RestartButton">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>180</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(246, 97, 81);
+border-radius: 25px;</string>
+    </property>
+    <property name="text">
+     <string>Заново</string>
     </property>
    </widget>
   </widget>

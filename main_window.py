@@ -16,11 +16,10 @@ class MainWindow(QMainWindow):
 
         self.check_result_button: QPushButton = self.findChild(QPushButton, 'CheckResultButton')
 
-        self.input_field: QLineEdit = self.findChild(QLineEdit, 'InputNumber')
-        self.input_field.setPlaceholderText(f'{self.input_field.placeholderText()}. Попытка {self.game.game_stage()}')
+        self.set_default_stylesheets()
 
-        self.text_label: QLabel = self.findChild(QLabel, 'OutputText')
-        self.text_label.setText('Компьютер загадал число от 0 до 100, угадай его! У тебя 5\nпопыток')
+        self.restart_button: QPushButton = self.findChild(QPushButton, 'RestartButton')
+        self.restart_button.close()
 
         self.add_buttons_events()
 
@@ -30,9 +29,12 @@ class MainWindow(QMainWindow):
 
     def add_buttons_events(self):
         self.check_result_button.clicked.connect(self.run_game)
+        self.restart_button.clicked.connect(self.restart_game)
         logger.debug('События для кнопок определены и привязаны')
 
     def run_game(self):
+        self.restart_button.close()
+
         if self.check_field():
             input_num = int(self.input_field.text())
 
@@ -44,6 +46,8 @@ class MainWindow(QMainWindow):
                 self.input_field.setPlaceholderText('Начините заново!!!')
                 self.input_field.setDisabled(True)
 
+                self.restart_button.show()
+
                 logger.debug('Игра проиграна')
                 return
 
@@ -53,17 +57,37 @@ class MainWindow(QMainWindow):
 
                 self.input_field.setDisabled(True)
 
+                self.restart_button.show()
+
                 logger.debug('Игра выиграна')
                 return
 
             else:
                 if input_num < self.game.random_num and self.game.game_stage() <= 5:
-                    self.text_label.setText('Неверно. Вы названи число меньше загаданного')
+                    self.show_text('Неверно. Вы названи число меньше загаданного')
                 elif input_num > self.game.random_num and self.game.game_stage() <= 5:
-                    self.text_label.setText('Неверно. Вы названи число больше загаданного')
+                    self.show_text('Неверно. Вы названи число больше загаданного')
                 self.game.stage += 1
                 self.update_placeholder()
                 self.input_field.clear()
+
+    def restart_game(self):
+        self.game.random_num = self.game.generate_random_number(0, 100)
+        self.game.stage = 1
+
+        self.restart_button.close()
+
+        self.set_default_stylesheets()
+
+    def set_default_stylesheets(self):
+        self.input_field: QLineEdit = self.findChild(QLineEdit, 'InputNumber')
+        self.input_field.setDisabled(False)
+        self.input_field.clear()
+        self.update_placeholder()
+
+        self.text_label: QLabel = self.findChild(QLabel, 'OutputText')
+        self.text_label.setStyleSheet('background-color: rgb(119, 118, 123);\ncolor: rgb(246, 245, 244);\nborder-radius: 25px;')
+        self.text_label.setText('Компьютер загадал число от 0 до 100, угадай его! У тебя 5\nпопыток')
 
     def check_field(self) -> bool:
         txt = self.input_field.text().strip()
